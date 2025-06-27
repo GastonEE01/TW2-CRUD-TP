@@ -1,0 +1,47 @@
+@if(spinner){
+<div class="row text-center">
+    <div class="col">
+        <div class="card">
+            <p-progress-spinner />
+        </div>
+    </div>
+</div>
+} @else {
+<div class="row">
+    <div class="col">
+        <h1>Detalle empresa</h1>
+    </div>
+    <div class="col text-end">
+        <p-button icon="pi pi-undo" [routerLink]="['/empresas/list-empresas']"></p-button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <p-card>
+            <div class="row">
+                <div class="col">
+                    <h2>Nombre: {{empresa?.nombre}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h2>Empleados</h2>
+                    @for(empleado of empresa?.empleados; track empleado.id){
+                    <ul>
+                        <li>
+                            {{empleado.nombre}}
+                            <p-button [label]="empleado.nombre" icon="pi pi-user"
+                                [routerLink]="['/empleados/detail-empleado',empleado.id]">
+                            </p-button>
+                        </li>
+                    </ul>
+                    }@empty {
+                        <p>No tiene empleados</p>
+                    }
+                </div>
+            </div>
+        </p-card>
+    </div>
+</div>
+}
