@@ -1,0 +1,59 @@
+<!-- src/app/modules/login/components/form-signup/form-signup.component.html -->
+<form [formGroup]="form" (ngSubmit)="sendForm()">
+    <div class="row">
+        <div class="col">
+            <label for="email" class="text-dark">Email</label>
+            <input type="email" [style]="{width : '100%'}" pInputText formControlName="email" id="email">
+            @if(form.get('email')?.hasError('required') && form.get('email')?.touched){
+            <span class="text-danger">Este campo es requerido</span>
+            }
+            @if(form.get('email')?.hasError('email') && form.get('email')?.touched){
+            <span class="text-danger">Email inválido</span>
+            }
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <label for="contraseña" class="text-dark">Contraseña</label>
+            <p-password [style]="{width : '100%'}" formControlName="contraseña" id="contraseña" [toggleMask]="true"></p-password><!--Esto hace que que se pongo la barra de seguridad de contraseña-->
+            @if(form.get('contraseña')?.hasError('required') && form.get('contraseña')?.touched){
+            <span class="text-danger">Este campo es requerido</span>
+            }
+            @if(form.get('contraseña')?.hasError('minlength') && form.get('contraseña')?.touched){
+            <span class="text-danger">Mínimo 5 caracteres</span>
+            }
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <label for="nombre" class="text-dark">Nombre</label>
+            <input type="text" [style]="{width : '100%'}" pInputText formControlName="nombre" id="nombre">
+            @if(form.get('nombre')?.hasError('required') && form.get('nombre')?.touched){
+            <span class="text-danger">Este campo es requerido</span>
+            }
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <label for="apellido" class="text-dark">Apellido</label>
+            <input type="text" [style]="{width : '100%'}" pInputText formControlName="apellido" id="apellido">
+            @if(form.get('apellido')?.hasError('required') && form.get('apellido')?.touched){
+            <span class="text-danger">Este campo es requerido</span>
+            }
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <label for="direccion" class="text-dark">Dirección</label>
+            <input type="text" [style]="{width : '100%'}" pInputText formControlName="direccion" id="direccion">
+            @if(form.get('direccion')?.hasError('required') && form.get('direccion')?.touched){
+            <span class="text-danger">Este campo es requerido</span>
+            }
+        </div>
+    </div>
+    <div class="row mt-3 text-center">
+        <div class="col">
+            <p-button [disabled]="form.invalid" type="submit" label="Registrarse" [rounded]="true" severity="success"></p-button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,16 @@
+<p-toast />
+
+<div class="row">
+    <div class="col">
+        <h1>Registrarse</h1>
+    </div>
+    <div class="col text-end">
+        <p-button icon="pi pi-sign-in" [routerLink]="['/login']" label="Iniciar Sesión"></p-button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <app-form-signup (eventEmitterForm)="onSignup($event)"></app-form-signup>
+    </div>
+</div>

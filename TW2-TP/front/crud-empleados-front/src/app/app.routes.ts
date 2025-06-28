@@ -5,11 +5,16 @@ export const routes: Routes = [
 
     {
         path : '',
-        component : HomeComponent
+        redirectTo: '/login',
+        pathMatch: 'full'
+    },
+    {
+        path : 'login',
+        loadChildren: () => import('./modules/login/login.routes').then(m => m.loginRoutes)
     },
     {
         path : 'empleados',
-        loadChildren : ()=>import('./modules/empleados/empleados.routes').then(e => e.empleadosRoutes)
+        loadChildren: () => import('./modules/empleados/empleados.routes').then(m => m.empleadosRoutes)
     },
     {
         path : 'empresas',
@@ -17,6 +22,7 @@ export const routes: Routes = [
     },
     {
         path : '**',
-        redirectTo : 'home'
+        redirectTo : 'login'
+    //  redirectTo : 'home'
     }
 ];
