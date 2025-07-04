@@ -21,6 +21,10 @@ export const routes: Routes = [
         loadChildren : ()=>import('./modules/empresas/empresas.routes').then(e => e.empresaRoutes)
     },
     {
+    path : 'productos',
+    loadChildren: () => import('./modules/productos/productos.routes').then(m => m.productoRoutes)
+    },
+    {
         path : '**',
         redirectTo : 'login'
     //  redirectTo : 'home'

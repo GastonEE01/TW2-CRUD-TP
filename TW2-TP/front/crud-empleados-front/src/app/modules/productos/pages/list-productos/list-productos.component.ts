@@ -7,10 +7,11 @@ import { TableEmpleadosListComponent } from "../../../empleados/components/table
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { TableProductosComponent } from '../../components/table-productos/table-productos.component';
 
 @Component({
   selector: 'app-list-productos',
-  imports: [TableModule, ButtonModule, ToastModule, ProgressSpinner, TableEmpleadosListComponent],
+  imports: [TableModule, ButtonModule, ToastModule, ProgressSpinner, TableEmpleadosListComponent,TableProductosComponent],
   templateUrl: './list-productos.component.html',
   styleUrl: './list-productos.component.css'
 })

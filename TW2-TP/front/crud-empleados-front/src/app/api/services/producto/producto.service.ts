@@ -1,9 +1,12 @@
 import { HttpClient } from "@angular/common/http";
-import { inject } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Producto } from "../../../modules/productos/interfaces/producto.interface";
 import { environment } from "../../../../environments/environment";
 
+@Injectable({
+  providedIn: 'root'
+})
 
 export class ProductoService {
   set(data: Producto[]) {
