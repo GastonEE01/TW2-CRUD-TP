@@ -1,0 +1,28 @@
+ <p-toast />
+
+@if(spinner){
+    <div class="row text-center m-0 p-0" >
+        <div class="col m-0 p-0">
+            <div class="card">
+                <p-progress-spinner  />
+            </div>
+        </div>
+    </div>
+}@else {
+<div class="row">
+    <div class="col">
+        <h1>Listar empleados</h1>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col">
+        <app-table-empleados-list (eventEmitterTable)="listProductos()" [empleados]="productos()"></app-table-empleados-list>
+    </div>
+</div>
+
+
+
+
+}

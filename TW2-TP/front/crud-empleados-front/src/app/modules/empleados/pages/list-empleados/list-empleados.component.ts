@@ -25,6 +25,7 @@ export class ListEmpleadosComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.listEmpleados();
+    
   }
 
   ngOnDestroy(): void {
