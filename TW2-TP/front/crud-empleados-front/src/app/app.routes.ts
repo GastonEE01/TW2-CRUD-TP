@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './public/home/home.component';
+import { LayoutComponent } from './public/layout/layout.component';
 
 export const routes: Routes = [
 
@@ -13,6 +14,15 @@ export const routes: Routes = [
         loadChildren: () => import('./modules/login/login.routes').then(m => m.loginRoutes)
     },
     {
+        path: '',
+        component: LayoutComponent,
+        children: [
+    {
+        path: 'home',
+        component: HomeComponent
+    },
+
+    {
         path : 'empleados',
         loadChildren: () => import('./modules/empleados/empleados.routes').then(m => m.empleadosRoutes)
     },
@@ -23,6 +33,8 @@ export const routes: Routes = [
     {
     path : 'productos',
     loadChildren: () => import('./modules/productos/productos.routes').then(m => m.productoRoutes)
+    }
+]
     },
     {
         path : '**',

@@ -5,7 +5,7 @@ export class EmpleadoRepository {
     async getEmpleados() {
         return await prisma.empleado.findMany(
             {
-                include: { empresa: true }
+                include: { Empresa: true }
             }
         )
     }
@@ -14,9 +14,9 @@ export class EmpleadoRepository {
         return await prisma.empleado.findUnique({
             where: { id },
             include: {
-                empresa: {
+                Empresa: {
                     include: {
-                        empleados: true //le  agregue la "s" 
+                        Empleado: true
                     }
                 }
             }

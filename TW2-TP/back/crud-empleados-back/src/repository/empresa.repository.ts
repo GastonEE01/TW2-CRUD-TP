@@ -3,13 +3,13 @@ import { prisma } from "../prisma";
 export class EmpresaRepository {
 
     async getEmpresas() {
-        return await prisma.empresa.findMany({ include: { empleados: true } })
+        return await prisma.empresa.findMany({ include: { Empleado: true } })
     }
 
     async getEmpresaById(id: number) {
         return await prisma.empresa.findUnique({
             where: { id: id },
-            include: { empleados: true }
+            include: { Empleado: true }
         }
         )
     }
@@ -55,7 +55,7 @@ export class EmpresaRepository {
         const empresaActualizada = await prisma.empresa.update({
             where : {id : empresa.id},
             data : {nombre : empresa.nombre},
-            include : {empleados : true}
+            include : {Empleado : true}
         })
 
         return empresaActualizada
