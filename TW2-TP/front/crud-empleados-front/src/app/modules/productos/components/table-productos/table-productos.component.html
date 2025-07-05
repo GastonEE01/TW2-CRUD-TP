@@ -1,1 +1,19 @@
-<p>table-productos works!</p>
+<p-table [value]="productos()" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>precio</th>
+            <th>foto</th>
+        </tr>
+    </ng-template>
+   
+    <ng-template #body let-productos>
+        <tr>
+            <td>{{ productos.nombre }}</td>
+            <td>{{productos.Descripcion}}</td>
+            <td>{{productos.Precio}}</td>
+            <td> <img src={{productos.Imagen}} alt="" srcset=""> </td>
+        </tr>
+    </ng-template>
+</p-table> 

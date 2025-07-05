@@ -11,7 +11,7 @@ import { TableProductosComponent } from '../../components/table-productos/table-
 
 @Component({
   selector: 'app-list-productos',
-  imports: [TableModule, ButtonModule, ToastModule, ProgressSpinner, TableEmpleadosListComponent,TableProductosComponent],
+  imports: [TableModule, ButtonModule, ToastModule, ProgressSpinner,TableProductosComponent],
   templateUrl: './list-productos.component.html',
   styleUrl: './list-productos.component.css'
 })
