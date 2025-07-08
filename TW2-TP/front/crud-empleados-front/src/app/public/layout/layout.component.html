@@ -1,13 +1,4 @@
-<!-- Header con nombre de usuario -->
-<div style="background: #007bff; color: white; padding: 10px; text-align: right;">
-  <span *ngIf="nombreUsuario; else noUser">
-    Usuario: <strong>{{ nombreUsuario }}</strong>
-  </span>
-  <ng-template #noUser>
-    <span style="color: #ffcccc;">No hay usuario logueado</span>
-  </ng-template>
-</div>
-
-<app-menu>
+<app-menu></app-menu>
+<div style="padding-top: 60px;">
   <router-outlet></router-outlet>
-</app-menu>
+</div>

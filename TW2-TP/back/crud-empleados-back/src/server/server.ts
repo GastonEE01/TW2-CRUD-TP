@@ -26,6 +26,10 @@ export class Server {
 
         this.app.use(cors())
 
+        this.app.use((req, res, next) => {
+            next();
+        });
+
         this.app.use(this.routes);
 
         this.app.listen(this.port, ()=>{

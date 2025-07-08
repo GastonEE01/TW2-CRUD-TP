@@ -1,0 +1,85 @@
+:host {
+    background-color: #f5f6fa;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.productos-wrapper {
+    width: 97%;
+    min-height: 100vh;
+    background-color: #ac9494;
+    margin: 0 auto;
+    padding: 30px 0;
+    box-sizing: border-box;
+}
+
+.agregar-carrito-btn {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  background: #3483fa;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 2px 8px rgba(52,131,250,0.13);
+  transition: all 0.2s;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+}
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 8px;
+    width: 100%;
+}
+
+.producto-card {
+    background: #fff;
+    color: #222;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    display: flex;
+    flex-direction: column;
+    min-height: 270px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+.productos-fondo {
+  background: #f5f6fa; /* gris claro */
+  min-height: 100vh;
+  width: 100vw;
+  padding: 0;
+}
+
+.productos-contenedor {
+  width: calc(100vw - 60px); /* 30px de margen a cada lado */
+  margin: 0 auto;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+@media (max-width: 1200px) {
+  .productos-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 800px) {
+  .productos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

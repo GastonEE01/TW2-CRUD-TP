@@ -1,0 +1,242 @@
+:host {
+    background-color: #f5f6fa;
+    min-height: 100vh;
+    display: block;
+}
+
+.carrito-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    background-color: transparent;
+}
+
+.productoContainer{
+    width: 100%;
+    background-color: blue;
+}
+.carrito-container h2 {
+    font-size: 28px;
+    color: #222;
+    font-weight: 600;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.carrito-container > div:first-of-type {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 16px;
+}
+
+.text-center {
+    text-align: center;
+    padding: 60px 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    margin: 20px 0;
+}
+
+.text-center p {
+    font-size: 18px;
+    color: #666;
+    margin: 0;
+}
+
+.table {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: none;
+}
+
+.table thead {
+    background-color: #3483fa;
+    color: white;
+}
+
+.table thead th {
+    border: none;
+    padding: 16px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table tbody td {
+    padding: 16px;
+    vertical-align: middle;
+    border: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.cantidad-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-cantidad {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.btn-cantidad:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.btn-cantidad:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.cantidad-display {
+    min-width: 40px;
+    text-align: center;
+    font-weight: 600;
+    color: #222;
+}
+
+.btn {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background: #e0a800;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.text-end {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 24px;
+    margin-top: 20px;
+}
+
+.text-end h4 {
+    font-size: 24px;
+    color: #222;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.text-end .btn {
+    margin-left: 12px;
+}
+
+@media (max-width: 768px) {
+    .carrito-container {
+        padding: 16px;
+    }
+    
+    .table thead th,
+    .table tbody td {
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+    
+    .text-end {
+        padding: 16px;
+    }
+    
+    .text-end h4 {
+        font-size: 20px;
+    }
+    
+    .btn {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .table {
+        font-size: 12px;
+    }
+    
+    .table thead th,
+    .table tbody td {
+        padding: 8px 4px;
+    }
+    
+    .btn-sm {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+}

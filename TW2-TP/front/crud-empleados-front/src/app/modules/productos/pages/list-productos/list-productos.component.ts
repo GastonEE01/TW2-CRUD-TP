@@ -3,17 +3,25 @@ import { MessageService } from 'primeng/api';
 import { ProgressSpinner } from 'primeng/progressspinner';
 import { ProductoService } from '../../../../api/services/producto/producto.service';
 import { Producto } from '../../interfaces/producto.interface';
-import { TableEmpleadosListComponent } from "../../../empleados/components/table-empleados-list/table-empleados-list.component";
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TableProductosComponent } from '../../components/table-productos/table-productos.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-list-productos',
-  imports: [TableModule, ButtonModule, ToastModule, ProgressSpinner,TableProductosComponent],
+  standalone: true,
   templateUrl: './list-productos.component.html',
-  styleUrl: './list-productos.component.css'
+  styleUrl: './list-productos.component.css',
+  imports: [
+    CommonModule,
+    TableModule,
+    ButtonModule,
+    ToastModule,
+    ProgressSpinner,
+    TableProductosComponent
+  ]
 })
 export class ListProductosComponent  implements OnInit , OnDestroy{
 

@@ -1,0 +1,33 @@
+.footer-horizontal {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #23272f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    padding: 16px 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.10);
+    z-index: 100;
+  }
+  
+  .footer-btn {
+    background: #3483fa;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .footer-btn:hover {
+    background: #2968c8;
+  }

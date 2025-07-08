@@ -1,7 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, map } from "rxjs";
 import { Producto } from "../../../modules/productos/interfaces/producto.interface";
+import { ProductoRest } from "./interfaces/producto.interface.rest";
+import { ProductoMapper } from "./mappings/producto.mapper";
 import { environment } from "../../../../environments/environment";
 
 @Injectable({
@@ -13,14 +15,13 @@ export class ProductoService {
     throw new Error('Method not implemented.');
   }
 
-http = inject(HttpClient);
+  http = inject(HttpClient);
 
-constructor() {}
+  constructor() {}
 
-  listProductos():Observable<Producto[]> {
-
-     return this.http.get<Producto[]>(`${environment.api_url}/producto`)
+  listProductos(): Observable<Producto[]> {
+    return this.http.get<ProductoRest[]>(`${environment.api_url}/producto`).pipe(
+      map((restProductos) => ProductoMapper.mapRestProductoArrayToProductoArray(restProductos))
+    );
   }
- 
-
 }

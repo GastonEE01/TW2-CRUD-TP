@@ -9,18 +9,39 @@
         </div>
     </div>
 }@else {
-<div class="row">
-    <div class="col">
-        <h1>Listar productos</h1>
+<div class="productos-wrapper">
+    <div class="productos-container">
+        <div class="productos-header">
+            <div class="filtros-productos" style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+                <label for="filtroPrincipal" style="font-weight: 500;">Filtrar por:</label>
+                <select id="filtroPrincipal"  style="padding: 6px 12px;">
+                  <option value="">Seleccione filtro</option>
+                  <option value="categoria">Por categoría</option>
+                  <option value="precio">Por precio mayor a menor</option>
+                  <option value="precio">Por precio menor a mayor</option>
+
+                </select>
+              
+                <!-- Subcombo solo si elige "Por categoría" -->
+                <ng-container >
+                  <label for="tipoProducto" style="margin-left: 8px;">Tipo de producto:</label>
+                  <select id="tipoProducto" style="padding: 6px 12px;">
+                    <option value="">Todos</option>
+                    <option ></option>
+                  </select>
+                </ng-container>
+              </div>   
+        </div>
+       <div class="productos-grid">
+        <div class="col">
+            <app-table-productos (eventEmitterTable)="listProductos()" [productos]="productos()"></app-table-productos>
+        </div>
+    </div>
     </div>
 
 </div>
 
-<div class="row">
-    <div class="col">
-        <app-table-productos (eventEmitterTable)="listProductos()" [productos]="productos()"></app-table-productos>
-    </div>
-</div>
+
 
 
 

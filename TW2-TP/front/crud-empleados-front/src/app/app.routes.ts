@@ -21,18 +21,13 @@ export const routes: Routes = [
         path: 'home',
         component: HomeComponent
     },
-
     {
-        path : 'empleados',
-        loadChildren: () => import('./modules/empleados/empleados.routes').then(m => m.empleadosRoutes)
+        path : 'productos',
+        loadChildren: () => import('./modules/productos/productos.routes').then(m => m.productoRoutes)
     },
     {
-        path : 'empresas',
-        loadChildren : ()=>import('./modules/empresas/empresas.routes').then(e => e.empresaRoutes)
-    },
-    {
-    path : 'productos',
-    loadChildren: () => import('./modules/productos/productos.routes').then(m => m.productoRoutes)
+        path: 'carrito',
+        loadChildren: () => import('./modules/carrito/carrito.routes').then(m => m.carritoRoutes)
     }
 ]
     },
