@@ -13,6 +13,15 @@
       </div>
       <div class="producto-envio">Llega gratis mañana</div>
     </div>
+    <div class="producto-cantidad">
+      <input
+        type="number"
+        min="1"
+        [(ngModel)]="cantidades[producto.idProducto]"
+        [ngModelOptions]="{standalone: true}"
+        style="width: 60px;"
+      />
+    </div>
     <button class="agregar-carrito-btn" (click)="agregarAlCarrito(producto)">
       <i class="pi pi-shopping-cart"></i>
     </button>
