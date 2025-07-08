@@ -1,42 +1,42 @@
- <p-toast />
+<p-toast />
 
 @if(spinner){
-    <div class="row text-center m-0 p-0" >
-        <div class="col m-0 p-0">
-            <div class="card">
-                <p-progress-spinner  />
-            </div>
+<div class="row text-center m-0 p-0">
+    <div class="col m-0 p-0">
+        <div class="card">
+            <p-progress-spinner />
         </div>
     </div>
+</div>
 }@else {
 <div class="productos-wrapper">
     <div class="productos-container">
         <div class="productos-header">
             <div class="filtros-productos" style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
                 <label for="filtroPrincipal" style="font-weight: 500;">Filtrar por:</label>
-                <select id="filtroPrincipal"  style="padding: 6px 12px;">
-                  <option value="">Seleccione filtro</option>
-                  <option value="categoria">Por categoría</option>
-                  <option value="precio">Por precio mayor a menor</option>
-                  <option value="precio">Por precio menor a mayor</option>
-
-                </select>
-              
-                <!-- Subcombo solo si elige "Por categoría" -->
-                <ng-container >
-                  <label for="tipoProducto" style="margin-left: 8px;">Tipo de producto:</label>
-                  <select id="tipoProducto" style="padding: 6px 12px;">
+                <select [(ngModel)]="categoriaSeleccionada">
                     <option value="">Todos</option>
-                    <option ></option>
-                  </select>
+                    <option *ngFor="let cat of categorias()" [value]="cat">{{cat}}</option>
+                </select>
+
+
+                <!-- Subcombo solo si elige "Por categoría" -->
+                <ng-container>
+                    <label for="tipoProducto" style="margin-left: 8px;">Tipo de producto:</label>
+                    <select id="tipoProducto" style="padding: 6px 12px;">
+                        <option value="">Todoss</option>
+                        <option></option>
+                    </select>
                 </ng-container>
-              </div>   
+                <button (click)="buscarPorCategoria()">Buscar</button>
+            </div>
         </div>
-       <div class="productos-grid">
-        <div class="col">
-            <app-table-productos (eventEmitterTable)="listProductos()" [productos]="productos()"></app-table-productos>
+        <div class="productos-grid">
+            <div class="col">
+                <app-table-productos [productos]="productos()"></app-table-productos>
+
+            </div>
         </div>
-    </div>
     </div>
 
 </div>

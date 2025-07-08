@@ -10,6 +10,15 @@ export const productoRoutes: Routes = [
                 component : ListProductosComponent
             },
         ]
-    }
+    },
+ /* {
+        path : '',
+        children : [
+            {
+                path : 'list-categorias',
+                component : ListProductosComponent
+            },
+        ]
+    }*/
     
 ];

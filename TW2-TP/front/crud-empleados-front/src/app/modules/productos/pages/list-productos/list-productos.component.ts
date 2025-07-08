@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TableProductosComponent } from '../../components/table-productos/table-productos.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-list-productos',
@@ -20,24 +21,54 @@ import { CommonModule } from '@angular/common';
     ButtonModule,
     ToastModule,
     ProgressSpinner,
-    TableProductosComponent
+    TableProductosComponent,
+    FormsModule
   ]
 })
 export class ListProductosComponent  implements OnInit , OnDestroy{
 
   productosService =inject(ProductoService);
   productos=signal<Producto[]>([]);
+  categorias = signal<string[]>(['inalambricos', 'tactil', 'perifericos', 'analogico']);;
+  categoriaSeleccionada: string = '';
+//categoriaSeleccionada = ["inalambricos","tactil","perifericos","analogicos"]
     spinner = true;
 
 ngOnInit(): void {
-  this.listProductos()
-  
+const cat = localStorage.getItem('categoria');
+    if (cat) {
+      this.categoriaSeleccionada = cat;
+      this.buscarPorCategoria();
+    } else {
+      this.listProductos(); 
+    }
 }
 
 ngOnDestroy(): void {
   
 }
 
+cargarCategorias() {
+  this.productosService.listCategorias().subscribe({
+    next: (data) => this.categorias.set(data),
+    error: (err) => console.error(err)
+  });
+}
+  buscarPorCategoria(): void {      
+      if (this.categoriaSeleccionada === '') {
+    localStorage.removeItem('categoria');
+    this.listProductos(); 
+  } else {
+    localStorage.setItem('categoria', this.categoriaSeleccionada);
+    this.productosService.listProductosPorCategoria(this.categoriaSeleccionada).subscribe({
+      next: (data) => this.productos.set(data),
+      error: (err) => console.log(err),
+      complete: () => (this.spinner = false),
+    });
+  }
+      
+    
+  }
 listProductos(){
     this.productosService.listProductos().subscribe(
         {
@@ -53,4 +84,5 @@ listProductos(){
         }
       )
   }
+
 }

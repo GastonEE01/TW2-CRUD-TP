@@ -11,17 +11,25 @@ import { environment } from "../../../../environments/environment";
 })
 
 export class ProductoService {
-  set(data: Producto[]) {
-    throw new Error('Method not implemented.');
-  }
-
-  http = inject(HttpClient);
 
   constructor() {}
+  http = inject(HttpClient);
+
+
+  listCategorias(): Observable<string[]> {
+  return this.http.get<string[]>(`${environment.api_url}/categorias`);
+}
+  
+
 
   listProductos(): Observable<Producto[]> {
     return this.http.get<ProductoRest[]>(`${environment.api_url}/producto`).pipe(
       map((restProductos) => ProductoMapper.mapRestProductoArrayToProductoArray(restProductos))
     );
   }
+  listProductosPorCategoria(categoria: string): Observable<Producto[]> {
+  return this.http.get<ProductoRest[]>(`${environment.api_url}/producto/categoria/${categoria}`).pipe(
+      map((restProductos) => ProductoMapper.mapRestProductoArrayToProductoArray(restProductos))
+    );
+}
 }

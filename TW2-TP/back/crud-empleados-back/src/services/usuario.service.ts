@@ -1,3 +1,4 @@
+import { log } from "console";
 import { UsuarioRepository } from "../repository/usuario.repository";
 
 export class UsuarioService {
@@ -20,9 +21,17 @@ export class UsuarioService {
         if (validarUsuario) {
             throw new Error('El email ya está registrado');
         }
-        if(usuarioMapeado.contrase_a.length < 5){
-            throw new Error('La contraseña debe tener al menos 5 caracteres');
-        }
+        
+    if (!usuarioMapeado.contrase_a || usuarioMapeado.contrase_a.length < 5) {
+        console.log(usuarioMapeado);
+        console.log(2
+
+        );
+        
+        
+        throw new Error('La contraseña debe tener al menos 5 caracteres');
+        
+    }
         if(!usuarioMapeado.Nombre || !usuarioMapeado.Apellido || !usuarioMapeado.Direccion){
             throw new Error('Todos los campos son obligatorios');
         }

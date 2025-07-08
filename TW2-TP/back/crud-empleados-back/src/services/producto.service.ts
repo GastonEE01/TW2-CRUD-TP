@@ -3,6 +3,10 @@ import { ProductoRepository } from "../repository/producto.repository";
 export class ProductoService {
     constructor(private productRepository:ProductoRepository) {
     } 
+  getProductosPorCategoria(nombreCategoria: string) {
+    return this.productRepository.getProductosPorCategoria(nombreCategoria);
+}
+
     getProductos() {
         return this.productRepository.getProductos();
     
