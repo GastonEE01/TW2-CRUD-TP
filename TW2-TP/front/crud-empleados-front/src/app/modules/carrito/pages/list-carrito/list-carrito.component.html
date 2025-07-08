@@ -1,46 +1,60 @@
 <div class="carrito-container">
-    <h2>Mi Carrito</h2>
+    <h2 class="carrito-titulo">Mi Carrito</h2>
     
-    <div *ngIf="loading">Cargando...</div>
+    <div *ngIf="loading" class="loading">Cargando...</div>
     
-    <div *ngIf="!loading && (!carrito || !carrito.CarritoProducto || carrito.CarritoProducto.length === 0)" class="text-center">
+    <div *ngIf="!loading && (!carrito || !carrito.CarritoProducto || carrito.CarritoProducto.length === 0)" class="carrito-vacio">
       <p>Tu carrito está vacío</p>
     </div>
 
     <div *ngIf="!loading && carrito && carrito.CarritoProducto && carrito.CarritoProducto.length > 0">
-      <table class="table">
+      <table class="carrito-table">
         <thead>
           <tr>
             <th>Producto</th>
             <th>Cantidad</th>
-            <th>Precio</th>
+            <th>Precio Unitario</th>
             <th>Subtotal</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of carrito.CarritoProducto">
-            <td>{{ item.Producto.nombre }}</td>
-            <td>{{ item.Cantidad }}</td>
-            <td>${{ item.Producto.precio }}</td>
-            <td>${{ (item.Producto.precio || 0) * item.Cantidad }}</td>
-            <td>
-              <button class="btn btn-danger btn-sm" 
-                      (click)="eliminarProducto(item.id)">
-                Eliminar
+          <tr *ngFor="let item of carrito.CarritoProducto" class="producto-row">
+            <td class="producto-info">
+              <div class="producto-details">
+                <h4 class="producto-nombre">{{ item.Producto.nombre }}</h4>
+                <p class="producto-descripcion">{{ item.Producto.descripcion }}</p>
+              </div>
+              <div class="producto-imagen-container">
+                <img [src]="getImagenProducto(item.Producto)" 
+                     [alt]="item.Producto.nombre" 
+                     class="producto-imagen" />
+              </div>
+            </td>
+            <td class="cantidad">{{ item.Cantidad }}</td>
+            <td class="precio">${{ getPrecioFormateado(item.Producto) }}</td>
+            <td class="subtotal">${{ getSubtotalFormateado(item) }}</td>
+            <td class="acciones">
+              <button class="btn-eliminar" (click)="eliminarProducto(item.id)">
+                <i class="pi pi-trash"></i> Eliminar
               </button>
             </td>
           </tr>
         </tbody>
       </table>
-      <div class="text-end">
-        <h4>Total: ${{ total }}</h4>
-        <button class="btn btn-warning me-2" (click)="limpiarCarrito()">
-          Limpiar Carrito
-        </button>
-        <button class="btn btn-success">
-          Finalizar Compra
-        </button>
+      
+      <div class="carrito-footer">
+        <div class="total-container">
+          <h3 class="total-text">Total: ${{ getTotalFormateado() }}</h3>
+        </div>
+        <div class="botones-container">
+          <button class="btn-limpiar" (click)="limpiarCarrito()">
+            <i class="pi pi-trash"></i> Limpiar Carrito
+          </button>
+          <button class="btn-finalizar">
+            <i class="pi pi-check"></i> Finalizar Compra
+          </button>
+        </div>
       </div>
     </div>
   </div>

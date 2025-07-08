@@ -13,7 +13,6 @@ import { LocalStorageService } from '../../../../api/services/localStorage/local
 })
 export class ListCarritoComponent implements OnInit {
   carrito: Carrito | null = null;
-  total: number = 0;
   loading = false;
 
   private carritoService = inject(CarritoService);
@@ -27,24 +26,49 @@ export class ListCarritoComponent implements OnInit {
     const usuario = this.localStorageService.getUsuario();
     if (usuario && usuario.id) {
       try {
+        this.loading = true;
         this.carrito = await this.carritoService.obtenerCarrito(usuario.id).toPromise() || null;
-        this.total = this.calcularTotal();
       } catch (error) {
         console.error('Error al cargar carrito:', error);
+      } finally {
+        this.loading = false;
       }
     }
   }
 
-  async actualizarCantidad(idCarritoProducto: number, nuevaCantidad: number) {
-    const usuario = this.localStorageService.getUsuario();
-    if (usuario && usuario.id) {
-      try {
-        await this.carritoService.actualizarCantidad(usuario.id, idCarritoProducto, nuevaCantidad).toPromise();
-        this.cargarCarrito(); 
-      } catch (error) {
-        console.error('Error al actualizar cantidad:', error);
-      }
+  private getPrecioProducto(producto: any): number {
+    if (producto.precio !== undefined && producto.precio !== null) {
+      return producto.precio;
     }
+    if (producto.Precio !== undefined && producto.Precio !== null) {
+      return producto.Precio;
+    }
+    return 0;
+  }
+
+  getPrecioFormateado(producto: any): string {
+    const precio = this.getPrecioProducto(producto);
+    return precio.toFixed(2);
+  }
+
+  getSubtotalFormateado(item: any): string {
+    const precio = this.getPrecioProducto(item.Producto);
+    const cantidad = item.Cantidad || 0;
+    const subtotal = precio * cantidad;
+    return subtotal.toFixed(2);
+  }
+
+  getTotalFormateado(): string {
+    if (!this.carrito || !this.carrito.CarritoProducto) {
+      return '0.00';
+    }
+    const total = this.carrito.CarritoProducto.reduce((sum: number, item: any) => {
+      const precio = this.getPrecioProducto(item.Producto);
+      const cantidad = item.Cantidad || 0;
+      return sum + (precio * cantidad);
+    }, 0);
+    
+    return total.toFixed(2);
   }
 
   async eliminarProducto(idCarritoProducto: number) {
@@ -71,10 +95,13 @@ export class ListCarritoComponent implements OnInit {
     }
   }
 
-  private calcularTotal(): number {
-    if (!this.carrito || !this.carrito.CarritoProducto) return 0;
-    return this.carrito.CarritoProducto.reduce((total: number, item: any) => {
-        return total + (item.Producto.precio || 0) * item.Cantidad;
-    }, 0);
+  getImagenProducto(producto: any): string {
+    if (producto.imagen) {
+      return producto.imagen;
+    }
+    if (producto.Imagen) {
+      return producto.Imagen;
+    }
+    return 'assets/default-product.png';
   }
 }
