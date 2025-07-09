@@ -18,16 +18,6 @@
                     <option value="">Todos</option>
                     <option *ngFor="let cat of categorias()" [value]="cat">{{cat}}</option>
                 </select>
-
-
-                <!-- Subcombo solo si elige "Por categoría" -->
-                <ng-container>
-                    <label for="tipoProducto" style="margin-left: 8px;">Tipo de producto:</label>
-                    <select id="tipoProducto" style="padding: 6px 12px;">
-                        <option value="">Todoss</option>
-                        <option></option>
-                    </select>
-                </ng-container>
                 <button (click)="buscarPorCategoria()">Buscar</button>
             </div>
         </div>
