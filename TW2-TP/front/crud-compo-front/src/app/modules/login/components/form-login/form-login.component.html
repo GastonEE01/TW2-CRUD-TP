@@ -13,12 +13,12 @@
     </div>
     <div class="row mt-3">
         <div class="col">
-            <label for="contraseña" class="text-dark">Contraseña</label>
-            <p-password [style]="{width : '100%'}" formControlName="contraseña" id="contraseña" [toggleMask]="true"></p-password>
-            @if(form.get('contraseña')?.hasError('required') && form.get('contraseña')?.touched){
+            <label for="contrasenia" class="text-dark">Contraseña</label>
+            <p-password [style]="{width : '100%'}" formControlName="contrasenia" id="contrasenia" [toggleMask]="true"></p-password><!--Esto hace que que se pongo la barra de seguridad de contraseña-->
+            @if(form.get('contrasenia')?.hasError('required') && form.get('contrasenia')?.touched){
             <span class="text-danger">Este campo es requerido</span>
             }
-            @if(form.get('contraseña')?.hasError('minlength') && form.get('contraseña')?.touched){
+            @if(form.get('contrasenia')?.hasError('minlength') && form.get('contrasenia')?.touched){
             <span class="text-danger">Mínimo 5 caracteres</span>
             }
         </div>
