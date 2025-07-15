@@ -31,7 +31,6 @@ export class ListProductosComponent  implements OnInit , OnDestroy{
   productos=signal<Producto[]>([]);
   categorias = signal<string[]>(['inalambricos', 'tactil', 'perifericos', 'analogico']);;
   categoriaSeleccionada: string = '';
-//categoriaSeleccionada = ["inalambricos","tactil","perifericos","analogicos"]
     spinner = true;
 
 ngOnInit(): void {

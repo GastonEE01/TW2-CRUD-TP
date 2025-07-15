@@ -32,10 +32,10 @@
               </div>
             </td>
             <td class="cantidad">{{ item.cantidad }}</td>
-            <td class="precio">${{ getPrecioFormateado(item.Producto) }}</td>
-            <td class="subtotal">${{ getSubtotalFormateado(item) }}</td>
+            <td class="precio">${{ getPrecio(item.Producto) }}</td>
+            <td class="subtotal">${{ getSubtotal(item) }}</td>
             <td class="acciones">
-              <button class="btn-eliminar" (click)="eliminarProducto(item.idCarritoProducto)">
+              <button class="btn-eliminar" (click)="deleteProduct(item.idCarritoProducto)">
                 <i class="pi pi-trash"></i> Eliminar
               </button>
             </td>
@@ -45,10 +45,10 @@
       
       <div class="carrito-footer">
         <div class="total-container">
-          <h3 class="total-text">Total: ${{ getTotalFormateado() }}</h3>
+          <h3 class="total-text">Total: ${{ getTotal() }}</h3>
         </div>
         <div class="botones-container">
-          <button class="btn-limpiar" (click)="limpiarCarrito()">
+          <button class="btn-limpiar" (click)="clearCart()">
             <i class="pi pi-trash"></i> Limpiar Carrito
           </button>
         </div>

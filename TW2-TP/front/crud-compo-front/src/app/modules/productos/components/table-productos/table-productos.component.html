@@ -10,7 +10,6 @@
       <div class="producto-descripcion">{{ producto.descripcion }}</div>
       <div class="producto-precio">
         $ {{ producto.precio | number:'1.0-0' }}
-       <!-- {{ producto.Precio | json }}-->
       </div>
       <div class="producto-envio">Llega gratis mañana</div>
     </div>
@@ -23,7 +22,7 @@
         style="width: 60px;"
       />
     </div>
-    <button class="agregar-carrito-btn" (click)="agregarAlCarrito(producto)">
+    <button class="agregar-carrito-btn" (click)="addToCart(producto)">
       <i class="pi pi-shopping-cart"></i>
     </button>
   </div>

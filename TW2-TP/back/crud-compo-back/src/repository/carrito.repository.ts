@@ -2,7 +2,7 @@ import { prisma } from "../prisma";
 
 export class CarritoRepository {
     
-    async obtenerCarritoPorUsuario(idUsuario: number) {    
+    async getCartUser(idUsuario: number) {    
         const carrito = await prisma.carrito.findFirst({
             where: { idUsuario },
             include: {
@@ -17,7 +17,7 @@ export class CarritoRepository {
         return carrito;
     }
 
-    async crearCarrito(idUsuario: number) {
+    async createCart(idUsuario: number) {
         const carrito = await prisma.carrito.create({
             data: {
                 idUsuario,
@@ -27,7 +27,7 @@ export class CarritoRepository {
         return carrito;
     }
 
-    async agregarProductoAlCarrito(idCarrito: number, idProducto: number, cantidad: number) {
+    async addProductoToCarrito(idCarrito: number, idProducto: number, cantidad: number) {
         try {
             const carrito = await prisma.carrito.findUnique({
                 where: { idCarrito: idCarrito }
@@ -74,20 +74,20 @@ export class CarritoRepository {
         }
     }
 
-    async eliminarProductoDelCarrito(idCarritoProducto: number) {
+    async removeproductCart(idCarritoProducto: number) {
         return await prisma.carritoProducto.delete({
             where: { idCarritoProducto: idCarritoProducto }
         });
     }
 
-    async actualizarCantidad(idCarritoProducto: number, cantidad: number) {
+    async updateQuantity(idCarritoProducto: number, cantidad: number) {
         return await prisma.carritoProducto.update({
             where: { idCarritoProducto: idCarritoProducto },
             data: { cantidad: cantidad }
         });
     }
 
-    async limpiarCarrito(idCarrito: number) {
+    async clearCart(idCarrito: number) {
         return await prisma.carritoProducto.deleteMany({
             where: { idCarrito: idCarrito }
         });

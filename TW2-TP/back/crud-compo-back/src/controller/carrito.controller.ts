@@ -7,10 +7,10 @@ const carritoRepository = new CarritoRepository();
 const carritoService = new CarritoService(carritoRepository);
 
 
-export const obtenerCarritoPorUsuario = async (req: Request, res: Response) => {
+export const getUserCart = async (req: Request, res: Response) => {
     try {
         const { idUsuario } = req.params;
-        const carrito = await carritoService.obtenerCarrito(Number(idUsuario));
+        const carrito = await carritoService.getCart(Number(idUsuario));
         res.json(carrito);
     } catch (error) {
         console.error('Error al obtener carrito:', error);
@@ -18,7 +18,7 @@ export const obtenerCarritoPorUsuario = async (req: Request, res: Response) => {
     }
 };
 
-export const agregarProductoAlCarrito = async (req: Request, res: Response) => {
+export const addProductToCart = async (req: Request, res: Response) => {
     try {
         const { idUsuario } = req.params;
         const { idProducto, cantidad } = req.body;
@@ -47,7 +47,7 @@ export const agregarProductoAlCarrito = async (req: Request, res: Response) => {
             throw new Error('Cantidad debe ser mayor a 0');
         }
         
-        const resultado = await carritoService.agregarProducto(
+        const resultado = await carritoService.addProduct(
             Number(idUsuario), 
             Number(idProducto), 
             Number(cantidad)
@@ -68,11 +68,11 @@ export const agregarProductoAlCarrito = async (req: Request, res: Response) => {
     }
 };
 
-export const actualizarCantidad = async (req: Request, res: Response) => {
+export const updateQuantity = async (req: Request, res: Response) => {
     try {
         const { idUsuario } = req.params;
         const { idCarritoProducto, cantidad } = req.body;
-        const resultado = await carritoService.actualizarCantidad(
+        const resultado = await carritoService.updateQuantity(
             Number(idUsuario),
             Number(idCarritoProducto),
             Number(cantidad)
@@ -85,12 +85,13 @@ export const actualizarCantidad = async (req: Request, res: Response) => {
     }
 };
 
-export const eliminarProductoDelCarrito = async (req: Request, res: Response) => {
+export const deleteProductCart
+= async (req: Request, res: Response) => {
     try {
         const { idUsuario } = req.params;
         const { idCarritoProducto } = req.query; 
         
-        const resultado = await carritoService.eliminarProducto(
+        const resultado = await carritoService.removeProduct(
             Number(idUsuario),
             Number(idCarritoProducto)
         );
@@ -102,10 +103,10 @@ export const eliminarProductoDelCarrito = async (req: Request, res: Response) =>
     }
 };
 
-export const limpiarCarrito = async (req: Request, res: Response) => {
+export const clearCart = async (req: Request, res: Response) => {
     try {
         const { idUsuario } = req.params;
-        const resultado = await carritoService.limpiarCarrito(Number(idUsuario));
+        const resultado = await carritoService.clearCart(Number(idUsuario));
         res.json(resultado);
     } catch (error) {
         console.error('Error al limpiar carrito:', error);

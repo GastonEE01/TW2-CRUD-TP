@@ -16,10 +16,10 @@ export class ProductoService {
   }
 
   listProductos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${environment.api_url}/producto`);  // <- Sin mapper
+    return this.http.get<Producto[]>(`${environment.api_url}/producto`);  
   }
 
   listProductosPorCategoria(categoria: string): Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${environment.api_url}/producto/categoria/${categoria}`);  // <- Sin mapper
+    return this.http.get<Producto[]>(`${environment.api_url}/producto/categoria/${categoria}`); 
   }
 }

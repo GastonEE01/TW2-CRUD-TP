@@ -5,4 +5,4 @@ export const productoRoutes=Router();
 const productoController=new ProductoController();
 
 productoRoutes.get('/', productoController.getProductos.bind(productoController));
-productoRoutes.get('/categoria/:nombre', productoController.getProductosPorCategoria.bind(productoController));
+productoRoutes.get('/categoria/:nombre', productoController.getProductsByCategory.bind(productoController));

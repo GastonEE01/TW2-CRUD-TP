@@ -8,7 +8,7 @@ const usuarioService = new UsuarioService(usuarioRepository);
 export class loginController {
         public signup = async (req: Request, res: Response) => {
         try {
-            const usuario = await usuarioService.crearUsuario(req.body);
+            const usuario = await usuarioService.createUser(req.body);
             res.status(201).json(usuario);
         } catch (error) {
             res.status(400).json({ message: error.message });

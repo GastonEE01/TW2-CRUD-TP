@@ -19,15 +19,15 @@ export class ListCarritoComponent implements OnInit {
   private localStorageService = inject(LocalStorageService);
 
   ngOnInit(): void {
-    this.cargarCarrito();
+    this.loadingCart();
   }
 
-  async cargarCarrito() {
+  async loadingCart() {
     const usuario = this.localStorageService.getUsuario();
     if (usuario && usuario.idUsuario) {
       try {
         this.loading = true;
-        this.carrito = await this.carritoService.obtenerCarrito(usuario.idUsuario).toPromise() || null;
+        this.carrito = await this.carritoService.getCart(usuario.idUsuario).toPromise() || null;
       } catch (error) {
         console.error('Error al cargar carrito:', error);
       } finally {
@@ -36,19 +36,19 @@ export class ListCarritoComponent implements OnInit {
     }
   }
 
-  getPrecioFormateado(producto: any): string {
+  getPrecio(producto: any): string {
     const precio = Number(producto.precio) || 0;  
     return precio.toFixed(2);
   }
 
-  getSubtotalFormateado(item: any): string {
+  getSubtotal(item: any): string {
     const precio = Number(item.Producto.precio) || 0; 
     const cantidad = Number(item.cantidad) || 0;       
     const subtotal = precio * cantidad;
     return subtotal.toFixed(2);
   }
 
-  getTotalFormateado(): string {
+  getTotal(): string {
     if (!this.carrito || !this.carrito.CarritoProducto) {
       return '0.00';
     }
@@ -61,24 +61,24 @@ export class ListCarritoComponent implements OnInit {
     return total.toFixed(2);
   }
 
-  async eliminarProducto(idCarritoProducto: number) {
+  async deleteProduct(idCarritoProducto: number) {
     const usuario = this.localStorageService.getUsuario();
     if (usuario && usuario.idUsuario) {
       try {
-        await this.carritoService.eliminarProducto(usuario.idUsuario, idCarritoProducto).toPromise();
-        this.cargarCarrito();
+        await this.carritoService.deleteProduct(usuario.idUsuario, idCarritoProducto).toPromise();
+        this.loadingCart();
       } catch (error) {
         console.error('Error al eliminar producto:', error);
       }
     }
   }
 
-  async limpiarCarrito() {
+  async clearCart() {
     const usuario = this.localStorageService.getUsuario();
     if (usuario && usuario.idUsuario) {
       try {
-        await this.carritoService.limpiarCarrito(usuario.idUsuario).toPromise();
-        this.cargarCarrito(); 
+        await this.carritoService.clearCart(usuario.idUsuario).toPromise();
+        this.loadingCart(); 
       } catch (error) {
         console.error('Error al limpiar carrito:', error);
       }

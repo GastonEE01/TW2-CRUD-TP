@@ -52,7 +52,7 @@ export class TableProductosComponent implements OnInit, OnChanges {
     this.usuarioLogueado = !!usuario;
   }
 
-  cantidadProducto(idProducto: number, value: number) {
+  quantityProduct(idProducto: number, value: number) {
     if (value < 1) {
       this.cantidades[idProducto] = 1;
     } else {
@@ -60,7 +60,7 @@ export class TableProductosComponent implements OnInit, OnChanges {
     }
   }
 
-  agregarAlCarrito(producto: Producto) {
+  addToCart(producto: Producto) {
     let cantidad = this.cantidades[producto.idProducto];
     
     if (!cantidad || cantidad < 1) {
@@ -79,7 +79,7 @@ export class TableProductosComponent implements OnInit, OnChanges {
       return;
     }
 
-    this.carritoService.agregarProducto(usuario.idUsuario, producto.idProducto, cantidad).subscribe({
+    this.carritoService.addProduct(usuario.idUsuario, producto.idProducto, cantidad).subscribe({
       next: (resultado) => {
         this.messageService.add({
           severity: 'success',

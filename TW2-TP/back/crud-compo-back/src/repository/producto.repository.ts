@@ -1,7 +1,7 @@
 import { prisma } from "../prisma";
 
 export class ProductoRepository {
- async getProductosPorCategoria(nombreCategoria: string) {
+ async getProductsByCategory(nombreCategoria: string) {
     return await prisma.producto.findMany({
         where: {
             TipoProducto: {
@@ -14,7 +14,7 @@ export class ProductoRepository {
     });
 }
 
-    async getProductos() {
+    async getProduct() {
         return await prisma.producto.findMany();
     
     }
