@@ -43,7 +43,6 @@
 }
 
 .login-btn {
-  background: #3483fa !important;
   border: none !important;
   border-radius: 8px !important;
   padding: 12px 24px !important;
@@ -51,13 +50,8 @@
   transition: all 0.3s ease !important;
 }
 
-.login-btn:hover {
-  background: #2968c8 !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px rgba(52, 131, 250, 0.3) !important;
-}
 
-/* Responsive */
+
 @media (max-width: 480px) {
   .signup-container {
     padding: 30px 20px;
@@ -87,4 +81,46 @@
 h1 {
     color: #333;
     margin: 0;
+} 
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; 
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #888;
+  z-index: 2;
+} 
+
+::ng-deep .p-password {
+  width: 100% !important;
+  position: relative;
+}
+
+::ng-deep .p-password-input {
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+::ng-deep .p-password .p-inputtext {
+  padding-right: 2.5rem !important; 
+}
+
+::ng-deep .p-password .p-password-icon {
+  position: absolute !important;
+  right: 1rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+  z-index: 2;
 } 

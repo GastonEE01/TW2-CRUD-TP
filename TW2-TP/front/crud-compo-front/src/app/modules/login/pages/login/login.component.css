@@ -42,22 +42,20 @@
   margin-top: 20px;
 }
 
-.register-btn {
-  background: #3483fa !important;
+.register-btn,
+.p-button.register-btn {
+  background: #28a745 !important;   
+  color: #fff !important;
   border: none !important;
-  border-radius: 8px !important;
-  padding: 12px 24px !important;
-  font-weight: 500 !important;
-  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+  background-image: none !important;   
 }
 
-.register-btn:hover {
-  background: #2968c8 !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px rgba(52, 131, 250, 0.3) !important;
+.register-btn:hover,
+.p-button.register-btn:hover {
+  background: #218838 !important;   
 }
 
-/* Responsive */
 @media (max-width: 480px) {
   .login-container {
     padding: 30px 20px;

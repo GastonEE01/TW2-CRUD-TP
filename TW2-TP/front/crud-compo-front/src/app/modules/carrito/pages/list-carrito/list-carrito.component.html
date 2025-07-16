@@ -31,7 +31,9 @@
                      class="producto-imagen" />
               </div>
             </td>
-            <td class="cantidad">{{ item.cantidad }}</td>
+           <td class="cantidad">
+            <input type="number" min="1" [(ngModel)]="item.cantidad" (change)="onQuantityChange(item)" />
+          </td>
             <td class="precio">${{ getPrecio(item.Producto) }}</td>
             <td class="subtotal">${{ getSubtotal(item) }}</td>
             <td class="acciones">

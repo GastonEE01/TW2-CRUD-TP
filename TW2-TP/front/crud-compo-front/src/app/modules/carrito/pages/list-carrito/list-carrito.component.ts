@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Carrito } from '../../interfaces/carrito.interface';
 import { CarritoService } from '../../../../api/services/carrito/carrito.service';
 import { LocalStorageService } from '../../../../api/services/localStorage/localStorage.service';
+import { FormsModule } from '@angular/forms';
+import { CarritoProducto } from '../../interfaces/carrito.interface';
 
 @Component({
   selector: 'app-list-carrito',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './list-carrito.component.html',
   styleUrl: './list-carrito.component.css'
 })
@@ -82,6 +84,21 @@ export class ListCarritoComponent implements OnInit {
       } catch (error) {
         console.error('Error al limpiar carrito:', error);
       }
+    }
+  }
+
+  async onQuantityChange(item: CarritoProducto) {
+    if (item.cantidad < 1) {
+      item.cantidad = 1;
+    }
+    try {
+      const usuario = this.localStorageService.getUsuario();
+      if (usuario) {
+        await this.carritoService.updateQuantity(usuario.idUsuario, item.idCarritoProducto, item.cantidad).toPromise();
+        this.loadingCart();
+      }
+    } catch (error) {
+      console.error('Error al actualizar cantidad:', error);
     }
   }
 
